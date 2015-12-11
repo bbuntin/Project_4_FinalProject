@@ -5,6 +5,7 @@ package com.gmail.bradley4.gradle.jokes;
  */
 public class Joker {
     public String getJoke(){
-        return "This is totally a funny joke";
+        return "How many programmers does it take to screw in a light bulb? \n\n" +
+                "None, that's a hardware problem!";
     }
 }
