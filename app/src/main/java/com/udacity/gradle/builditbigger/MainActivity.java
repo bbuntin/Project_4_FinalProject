@@ -1,6 +1,7 @@
 package com.udacity.gradle.builditbigger;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
@@ -8,7 +9,6 @@ import android.util.Pair;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Toast;
 
 import com.google.api.client.extensions.android.http.AndroidHttp;
 import com.google.api.client.extensions.android.json.AndroidJsonFactory;
@@ -17,6 +17,7 @@ import com.google.api.client.googleapis.services.GoogleClientRequestInitializer;
 
 import java.io.IOException;
 
+import bradley4.gmail.com.androidjoker.DisplayJoke;
 import bradley4.gmail.com.backend.myApi.MyApi;
 
 
@@ -93,7 +94,8 @@ public class MainActivity extends ActionBarActivity {
             String name = params[0].second;
 
             try {
-                return myApiService.sayHi(name).execute().getData();
+                //return myApiService.sayHi(name).execute().getData();
+                return myApiService.getJoke(name).execute().getData();
             } catch (IOException e) {
                 return e.getMessage();
             }
@@ -101,7 +103,10 @@ public class MainActivity extends ActionBarActivity {
 
         @Override
         protected void onPostExecute(String result) {
-            Toast.makeText(context, result, Toast.LENGTH_LONG).show();
+            //Toast.makeText(context, result, Toast.LENGTH_LONG).show();
+            Intent myIntent = new Intent(context, DisplayJoke.class);
+            myIntent.putExtra(getString(R.string.PassingJokeExtra), result);
+            startActivity(myIntent);
         }
     }
 }
