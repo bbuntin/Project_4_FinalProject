@@ -1,24 +1,12 @@
 package com.udacity.gradle.builditbigger;
 
 import android.content.Context;
-import android.content.Intent;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.util.Pair;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-
-import com.google.api.client.extensions.android.http.AndroidHttp;
-import com.google.api.client.extensions.android.json.AndroidJsonFactory;
-import com.google.api.client.googleapis.services.AbstractGoogleClientRequest;
-import com.google.api.client.googleapis.services.GoogleClientRequestInitializer;
-
-import java.io.IOException;
-
-import bradley4.gmail.com.androidjoker.DisplayJoke;
-import bradley4.gmail.com.backend.myApi.MyApi;
 
 
 public class MainActivity extends ActionBarActivity {
@@ -61,15 +49,14 @@ public class MainActivity extends ActionBarActivity {
        // Intent myIntent = new Intent(this, DisplayJoke.class);
        // myIntent.putExtra(getString(R.string.PassingJokeExtra), myJoker.getJoke());
 
-        //Pair<Context, String> pair = new Pair<Context, String>(this, "Manfred");
-        //EndpointsAsyncTask asyncTask = new EndpointsAsyncTask(pair, );
+        new com.udacity.gradle.builditbigger.EndpointsAsyncTask().execute(new Pair<Context, String>(this, "Manfred"));
 
-        new EndpointsAsyncTask().execute(new Pair<Context, String>(this, "Manfred"));
+        //new com.udacity.gradle.builditbigger.EndpointsAsyncTask().execute(new Pair<Context, String>(this, "Manfred"));
        // startActivity(myIntent);
     }
 
-
-    class EndpointsAsyncTask extends AsyncTask<Pair<Context, String>, Void, String> {
+/*
+    class com.udacity.gradle.builditbigger.EndpointsAsyncTask extends AsyncTask<Pair<Context, String>, Void, String> {
         private MyApi myApiService = null;
         private Context context;
 
@@ -111,5 +98,5 @@ public class MainActivity extends ActionBarActivity {
             myIntent.putExtra(getString(R.string.PassingJokeExtra), result);
             startActivity(myIntent);
         }
-    }
+    }*/
 }
