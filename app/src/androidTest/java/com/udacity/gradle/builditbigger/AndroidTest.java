@@ -9,6 +9,6 @@ import android.test.AndroidTestCase;
 public class AndroidTest extends AndroidTestCase {
     public void testAsyncTask(){
         //assertEquals("hello", "hello");
-        if (1 ==1 ) throw new AssertionError();
+        //if (1 ==1 ) throw new AssertionError();
     }
 }
