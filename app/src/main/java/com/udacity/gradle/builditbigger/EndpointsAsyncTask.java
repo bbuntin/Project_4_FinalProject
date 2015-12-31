@@ -22,6 +22,11 @@ import bradley4.gmail.com.backend.myApi.MyApi;
 public class EndpointsAsyncTask extends AsyncTask<Pair<Context, String>, Void, String> {
     private MyApi myApiService = null;
     private Context context;
+    private OnTaskCompleted listener;
+
+    public EndpointsAsyncTask(OnTaskCompleted listener){
+        this.listener = listener;
+    }
 
     @Override
     protected String doInBackground(Pair<Context, String>... params) {
@@ -56,7 +61,8 @@ public class EndpointsAsyncTask extends AsyncTask<Pair<Context, String>, Void, S
 
     @Override
     protected void onPostExecute(String result) {
-        Log.e("buntin", "really really really good");
+        Log.e("buntin", "onPostExecute...");
+        listener.onTaskCompleted(result);
         Intent myIntent = new Intent(context, DisplayJoke.class);
         myIntent.putExtra(context.getString(R.string.PassingJokeExtra), result);
         context.startActivity(myIntent);

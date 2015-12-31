@@ -3,13 +3,14 @@ package com.udacity.gradle.builditbigger;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
+import android.util.Log;
 import android.util.Pair;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
 
-public class MainActivity extends ActionBarActivity {
+public class MainActivity extends ActionBarActivity implements OnTaskCompleted {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,6 +43,12 @@ public class MainActivity extends ActionBarActivity {
 
     public void tellJoke(View view)
     {
-        new com.udacity.gradle.builditbigger.EndpointsAsyncTask().execute(new Pair<Context, String>(this, "Nothing"));
+        new com.udacity.gradle.builditbigger.EndpointsAsyncTask(this).execute(new Pair<Context, String>(this, "Nothing"));
+    }
+
+    @Override
+    public void onTaskCompleted(String returnValue) {
+        //do nothing. Is used for jUnit Test.
+        Log.e("buntin", "onTaskCompleted...");
     }
 }
