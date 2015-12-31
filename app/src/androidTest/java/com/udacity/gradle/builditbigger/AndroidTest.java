@@ -17,10 +17,7 @@ public class AndroidTest extends AndroidTestCase implements OnTaskCompleted  {
     private CountDownLatch signal;
 
     public void testAsyncTask(){
-        //assertEquals("hello", "hello");
         signal = new CountDownLatch(1);
-
-        //Log.e("buntin", "really good");
         context = new MockContext();
         new com.udacity.gradle.builditbigger.EndpointsAsyncTask(this).execute(new Pair<Context, String>(context, "Nothing"));
 
@@ -29,16 +26,14 @@ public class AndroidTest extends AndroidTestCase implements OnTaskCompleted  {
         }catch(InterruptedException e){
             e.printStackTrace();
         }
-
-        //if (1 ==1 ) throw new AssertionError();
     }
 
     @Override
     public void onTaskCompleted(String returnValue) {
-        Log.e("buntin", returnValue);
         if (returnValue == "" ){
             throw new AssertionError();
         }else{
+            Log.e("buntin", returnValue);
             Log.e("buntin", "no errors");
         }
     }
