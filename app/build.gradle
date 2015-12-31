@@ -16,11 +16,11 @@ android {
     productFlavors{
 
         freeFlavor{
-
+            applicationId "com.udacity.gradle.builditbigger.free"
         }
 
         paidFlavor{
-
+            applicationId "com.udacity.gradle.builditbigger.paid"
         }
 
     }
